@@ -7,7 +7,7 @@ Réalisation d'un site web permettant l'échange de ST et d'électifs entre les 
 ## Membres du projet :
 
 Respo 2A : @CaptFlam, @Gr1ng0 <br/>
-Membres 1A :
+Membres 1A : @MaelleRenaud, @Wiikip, @SullyTheBold, @ohashiro
 
 ## Features attendues :
 * [ ]  Echange de cours obtenus avec les cours souhaités
