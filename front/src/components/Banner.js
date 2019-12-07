@@ -9,7 +9,7 @@ function Banner(props) {
   return(
     
     
-    <Router>
+    
     
     <nav class="navbar-light">
   <Link class="navbar-brand" to ="/">Echanges Electifs</Link>
@@ -40,7 +40,7 @@ function Banner(props) {
 
   </div>
 </nav>
-</Router>
+
     
     
     
@@ -49,4 +49,4 @@ function Banner(props) {
 }
 
 
-export  default Banner;
+export  default withRouter(Banner);

@@ -30,6 +30,7 @@ function Main(props) {
   return(
     <Fragment>
     <Router>
+      <Banner/>
       {routes}
       </Router>
     </Fragment>
