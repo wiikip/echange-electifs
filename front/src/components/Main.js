@@ -1,13 +1,18 @@
 import React, {Fragment} from 'react';
 import Board from "../views/Board"
 import Banner from "../components/Banner"
-import addAnnounce from ""
+import AddAnnounce from "../components/AddAnnounce"
 
 import {Link ,  Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import Home from '../views/Home';
+
+
+
+
+
 let routes = (
   <div>
-    <Switch>
+  
     <Route exact path = "/" component = {Home}>
         
     </Route>
@@ -18,12 +23,19 @@ let routes = (
     ,["ST2", "26/11/19", "Maelle", "Observing Earth", "Propagation Virale", "Ca me sauverait la vie" ]
     ,["ST2", "26/11/19", "Maelle", "Observing Earth", "Propagation Virale", "Ca me sauverait la vie" ]
     ,["ST2", "26/11/19", "Maelle", "Observing Earth", "Propagation Virale", "Ca me sauverait la vie" ]]} />
+    <Link to = '/board/add'>Ajouter une annonce</Link>
+    
     </Route>
     <Route path = "/about" render = {() => <Home/>}>
     
       
     </Route>
-    </Switch>
+    <Route path = "/board/add">
+    <AddAnnounce/>
+    <p>YO</p>
+
+    </Route>
+  
   
   </div>
 )

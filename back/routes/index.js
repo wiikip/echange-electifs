@@ -5,5 +5,11 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
+router.post('/api', function(req,res,next){
+
+
+
+  res.redirect('/board');
+});
 
 module.exports = router;

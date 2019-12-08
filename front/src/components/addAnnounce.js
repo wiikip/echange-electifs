@@ -1,20 +1,31 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 
 
-function addAnnounce(props){
+function AddAnnounce(props){
 
     return(
-        <Fragment>
-            <form method = 'POST'>
-            <input type = 'text'>Nom</input>
-
+        <div>
+            <form method = 'POST' action = '/api/addToListe'>
+            <p>Sequence:</p>
+            <input type = 'text' name = 'sequence'/>
+            <p>Nom:</p>
+            <input type = 'text' name = 'nom'/>
+            <p>Prenom:</p>
+            <input type = 'text' name = 'prenom'/>
+            <p>Cours à échanger:</p>
+            <input type = 'text' name = 'reveicedCourse'/>
+            <p>Cours souhaité:</p>
+            <input type = 'text' name = 'wantedCourse'/>
+            <p>Message:</p>
+            <input type = 'text' name = 'message'/>
+            <input type = 'submit'/>
 
             </form>
+            <p>Salut</p>
+            </div>
 
-
-
-        </Fragment>
+        
     )
 }
 
-export default addAnnounce
+export default AddAnnounce;
