@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
 import Board from "../views/Board"
 import Banner from "../components/Banner"
+import addAnnounce from ""
 
 import {Link ,  Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import Home from '../views/Home';

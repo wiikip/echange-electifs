@@ -6,7 +6,7 @@ function Home(props){
     
     return (
         <Fragment>
-         <p>WIP</p>
+         <p>Bienvenue sur le site d'échange d'électifs</p>
         </Fragment>
     )
 }
