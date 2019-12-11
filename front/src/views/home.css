@@ -1,0 +1,39 @@
+#image_welcome_page{
+    width: 38%;
+    padding-top:2rem;
+    padding-bottom:3rem;
+}
+
+h1 {
+    font-family: Arial;
+    color:rgb(80, 148, 91);
+    font-size:55px;
+}
+
+p{
+    font-family: Arial;
+    color:rgb(42, 97, 51);
+    font-size: 20px;
+    
+}
+
+.foundus {
+    padding-top: 5rem;
+    padding-bottom: 4rem;
+  }
+
+  @media screen and (max-width: 774px) {
+      #image_welcome_page{
+      width:50%;
+      }
+  }
+
+ #mail_contact{
+     color:rgb(80, 148, 91);
+     text-decoration: none;
+     transition:0.2s;
+ } 
+
+ #mail_contact:hover{
+     color:#d39a00;
+ }
