@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 import React, { Fragment } from "react";
 import Announce from "../components/Announce";
 import "./home.css";
 
-=======
-import React, { Fragment, useState } from "react";
->>>>>>> 1b91902fd5a241c557ac0fb0fcd6048788c3b925
 
 
 function Home(props){
@@ -13,7 +9,6 @@ function Home(props){
     
     return (
         <Fragment>
-<<<<<<< HEAD
             <div className="container-fondus ">
                 <div className="row">
                     <div className="col-lg-6 mx-auto text-center">
@@ -41,9 +36,6 @@ function Home(props){
                     </div>
                 </div>
             </div>
-=======
-         <p>Bienvenue sur le site d'échange d'électifs</p>
->>>>>>> 1b91902fd5a241c557ac0fb0fcd6048788c3b925
         </Fragment>
     )
 }

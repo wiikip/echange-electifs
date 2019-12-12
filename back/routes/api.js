@@ -17,8 +17,17 @@ router.post('/addToListe', function(req,res,next){
 });
 router.get('/getListe', function(req,res,next){
     var response = JSON.parse(readJson('../public/annonces.json'))
-    console.log(response)
-    res.json(response);
+    var listeAnnounce = []
+    response.forEach(annonce => {
+      var ann = []
+      ann.push(annonce["sequence"])
+      ann.push(annonce["postingDate"])
+      ann.push(annonce["name"])
+      ann.push(annonce["receivedCourse"])
+      ann.push(annonce["wantedCourse"])
+      ann.push(annonce["message"])
+     listeAnnounce.push(ann)});
+    res.send(listeAnnounce);
 
 
 

@@ -1,6 +1,6 @@
 import React, { Fragment , useEffect, useState} from "react";
 import Announce from "../components/Announce"
-
+const axios = require('axios');
 
 function Board(props){
     var [liste,setListe] = useState([])
@@ -8,37 +8,24 @@ function Board(props){
     
     useEffect(() => {
         console.log('yooo')
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '/api/getListe');
-        xhr.responseType = 'json';
-        xhr.onreadystatechange = function(){
-        if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200){
-            console.log('yolo');
-            console.log(xhr.response);
-            var listeAnnounce = []
-            xhr.response.forEach(annonce => {
-                var ann = []
-                ann.push(annonce["sequence"])
-                ann.push(annonce["postingDate"])
-                ann.push(annonce["name"])
-                ann.push(annonce["receivedCourse"])
-                ann.push(annonce["wantedCourse"])
-                ann.push(annonce["message"])
-               listeAnnounce.push(ann)
+        axios.get('/api/getListe').then(function(response){
 
-                
-            });
-          
-            setListe(listeAnnounce)
+setListe(response.data)
+
+        }
+        
+        
+        )
+        
             
             
 
             
             
                 
-            }
-        };
-        xhr.send(null)
+            
+        
+        
 
     }, []);
     
