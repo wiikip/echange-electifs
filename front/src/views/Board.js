@@ -9,7 +9,7 @@ function Board(props){
     useEffect(() => {
         console.log('yooo')
         axios.get('/api/getListe').then(function(response){
-
+console.log(response.data)
 setListe(response.data)
 
         }
@@ -42,8 +42,8 @@ setListe(response.data)
         <Fragment>
             <p>Annonces</p>
             <div className='card-deck'>
-                {liste.map(([sequence, postingDate, name, receivedCourse, wantedCourse, message])=> 
-                <Announce sequence={sequence} postingDate={postingDate} name={name} receivedCourse={receivedCourse} wantedCourse={wantedCourse} message={message} />)} */}
+                {liste.map((rowAnnounce)=> 
+                <Announce sequence={rowAnnounce['sgcréneau']} postingDate={rowAnnounce['created_at']} name={rowAnnounce['auth_id']} receivedCourse={rowAnnounce['electif_source']} wantedCourse={rowAnnounce['electif_souhaité']} message={rowAnnounce['message']} />)} */}
                 
             </div>
         </Fragment>
