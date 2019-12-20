@@ -13,7 +13,7 @@ function AddAnnounce(props){
             <p>Prenom:</p>
             <input type = 'text' name = 'prenom'/>
             <p>Cours à échanger:</p>
-            <input type = 'text' name = 'reveicedCourse'/>
+            <input type = 'text' name = 'receivedCourse'/>
             <p>Cours souhaité:</p>
             <input type = 'text' name = 'wantedCourse'/>
             <p>Message:</p>
