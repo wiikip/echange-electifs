@@ -32,7 +32,7 @@ let routes = (
     </Route>
     <Route path = "/board/add">
     <AddAnnounce/>
-    <p>YO</p>
+    
 
     </Route>
   

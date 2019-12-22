@@ -13,12 +13,13 @@ var readJson = (path) => {
 
 router.post('/addToListe', function(req, res, next){
   const client = new Client(config);
-  console.log(req.body)
+  console.log('A');
+  console.log(req.body);
   var now = new Date()
 
   const querry = {
-    text : "INSERT INTO annonces(created_at, electif_source, electif_souhaité, sgcréaneau, auth_id, message) VALUES($1, $2, $3, $4, $5, $6)",
-    values : [now,req.body['receivedCourse'],[req.body['wantedCourse']],req.body['sequence'], req.body['prenom'], req.body['message']]
+    text : "INSERT INTO annonces(created_at, electif_source, electif_souhaité, sgcréneau, auth_id, message) VALUES($1, $2, $3, $4, $5, $6)",
+    values : [now,req.body['receivedCourse'],[req.body['wantedCourse']],req.body['sequence'], 'AuthID', req.body['message']]
 
   }
 
@@ -35,13 +36,13 @@ router.post('/addToListe', function(req, res, next){
 
 
 
-})
+
   
  
 
 
 
-  
+  })
   
 });
 router.get('/getListe', function(req, res){
@@ -51,11 +52,16 @@ router.get('/getListe', function(req, res){
   client.connect()
   var now = new Date()
   
-  console.log(dateFormat(now, "dd/mm/yy").toString())
+  // console.log(dateFormat(now, "dd/mm/yy").toString())
   client.query('SELECT * FROM Annonces', (err,rresultat,next) =>{
+    if(rresultat.rows){
+      res.send(rresultat.rows);
+    }
       
-    console.log(err ? err : rresultat.rows);
-    res.send(rresultat.rows);
+
+    
+    // console.log(err ? err : rresultat.rows);
+    
     
     client.end()
 
