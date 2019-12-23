@@ -3,7 +3,8 @@ var router = express.Router();
 dateFormat = require('dateformat')
 const fs = require('fs');
 const {Client} = require('pg');
-const config = {user : 'postgres', database : 'postgres', password : '123456789'}
+const config = {user : 'postgres', database : 'postgres', password : '123456789'};
+const nbperpage = 10;
 
 var readJson = (path) => {
     return (fs.readFileSync(require.resolve(path)))
@@ -14,12 +15,18 @@ var readJson = (path) => {
 router.post('/addToListe', function(req, res, next){
   const client = new Client(config);
   console.log('A');
-  console.log(req.body);
+  var wantedCourse = req.body['wantedCourse']
+  console.log(typeof(req.body['wantedCourse']))
+  if (typeof(req.body['wantedCourse']) === 'string' || req.body['wantedCourse'] === 'null'){
+    wantedCourse = [wantedCourse]
+    console.log('String',wantedCourse)
+    
+  };
   var now = new Date()
-
+  
   const querry = {
     text : "INSERT INTO annonces(created_at, electif_source, electif_souhaité, sgcréneau, auth_id, message) VALUES($1, $2, $3, $4, $5, $6)",
-    values : [now,req.body['receivedCourse'],[req.body['wantedCourse']],req.body['sequence'], 'AuthID', req.body['message']]
+    values : [now,req.body['receivedCourse'],[wantedCourse],req.body['sequence'], 'AuthID', req.body['message']]
 
   }
 
@@ -45,16 +52,21 @@ router.post('/addToListe', function(req, res, next){
   })
   
 });
-router.get('/getListe', function(req, res){
+router.post('/getListe', function(req, res){
   
-    
+  var page = req.body['page']
   const client = new Client(config);
   client.connect()
   var now = new Date()
-  
+  const querry = {
+    text : "SELECT * FROM Annonces LIMIT $1 OFFSET $2",
+    values : [nbperpage, (page-1)*nbperpage]
+
+  }
   // console.log(dateFormat(now, "dd/mm/yy").toString())
-  client.query('SELECT * FROM Annonces', (err,rresultat,next) =>{
-    if(rresultat.rows){
+  client.query(querry, (err,rresultat,next) =>{
+    console.log(rresultat)
+    if(rresultat){
       res.send(rresultat.rows);
     }
       

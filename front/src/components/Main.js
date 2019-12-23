@@ -16,21 +16,16 @@ let routes = (
     <Route exact path = "/" component = {Home}>
         
     </Route>
-    <Route path = "/board">
-    <Board listAnnounce = {[["ST2", "26/11/19", "Maelle", "Observing Earth", "Propagation Virale", "Ca me sauverait la vie" ]
-    ,["ST2", "26/11/19", "Maelle", "Observing Earth", "Propagation Virale", "Ca me sauverait la vie" ]
-    ,["ST2", "26/11/19", "Maelle", "Observing Earth", "Propagation Virale", "Ca me sauverait la vie" ]
-    ,["ST2", "26/11/19", "Maelle", "Observing Earth", "Propagation Virale", "Ca me sauverait la vie" ]
-    ,["ST2", "26/11/19", "Maelle", "Observing Earth", "Propagation Virale", "Ca me sauverait la vie" ]
-    ,["ST2", "26/11/19", "Maelle", "Observing Earth", "Propagation Virale", "Ca me sauverait la vie" ]]} />
-    <Link to = '/board/add'>Ajouter une annonce</Link>
+    <Route exact path = "/board">
+    <Board/>
+    
     
     </Route>
-    <Route path = "/about" render = {() => <Home/>}>
+    <Route exact path = "/about" render = {() => <Home/>}>
     
       
     </Route>
-    <Route path = "/board/add">
+    <Route exact path = "/board/add">
     <AddAnnounce/>
     
 

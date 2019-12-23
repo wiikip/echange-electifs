@@ -24,7 +24,7 @@ const Electifs1A =
     {value: 'Réseaux et sécurité', label: 'Réseaux et sécurité'},
     {value: 'Science des transferts', label: 'Science des transferts'},
     {value: 'Systèmes électroniques', label: 'Systèmes électroniques'},
-    {value: 'T', label: 'Thermodynamique'},
+    {value: 'Thermodynamique', label: 'Thermodynamique'},
 
 ]
 const ST2 = 
