@@ -14,7 +14,7 @@ function Announce(props) {
             <div className='card-body text-left'>
                 <div className='card-text'>
                     {props.name} offre <strong>{props.receivedCourse}</strong> et souhaite: 
-                        <ul className = 'list-group'>{props.wantedCourse[0].map((course) => <li><strong>{course}</strong></li>
+                        <ul className = 'list-group'>{props.wantedCourse.map((course) => <li><strong>{course}</strong></li>
 
                         )}
                         </ul>

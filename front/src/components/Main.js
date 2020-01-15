@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import Board from "../views/Board"
 import Banner from "../components/Banner"
-import AddAnnounce from "./AddAnnounce"
+import CreateAnnounce from "../views/CreateAnnounce"
 
 import {Link ,  Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import Home from '../views/Home';
@@ -26,7 +26,7 @@ let routes = (
       
     </Route>
     <Route exact path = "/board/add">
-    <AddAnnounce/>
+    <CreateAnnounce/>
     
 
     </Route>
