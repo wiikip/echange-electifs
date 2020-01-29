@@ -24,13 +24,7 @@ var readJson = (path) => {
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
-router.use(session({
-    secret: 'yourSecret',
-    resave: false,
-    proxy: true, // Especially if unsing nginx/apache
-    saveUninitialized: true,
-    cookie: { secure: true }
-  }));
+
 
 // router.use(auth.OAuthMiddleware(configOauth));
 // router.get('/auth', (req,res)=>auth.AuthCallback(req, res));
@@ -86,6 +80,7 @@ router.post('/addToListe', function(req, res, next){
 });
 router.post('/getListe', function(req, res){
   console.log('Getting List of Announces')
+  console.log(req.session)
   var page = req.body['page']
   const client = new Client(config);
   client.connect()
@@ -97,7 +92,7 @@ router.post('/getListe', function(req, res){
   }
   // console.log(dateFormat(now, "dd/mm/yy").toString())
   client.query(querry, (err,rresultat,next) =>{
-    console.log(rresultat)
+   
     if(rresultat){
       res.send(rresultat.rows);
     }
