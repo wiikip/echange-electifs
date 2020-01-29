@@ -80,7 +80,7 @@ router.post('/addToListe', function(req, res, next){
 });
 router.post('/getListe', function(req, res){
   console.log('Getting List of Announces')
-  console.log(req)
+  
   var page = req.body['page']
   const client = new Client(config);
   client.connect()

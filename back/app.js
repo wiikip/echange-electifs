@@ -38,6 +38,7 @@ app.use(session({
 
 
 function auth (req, res, next) {
+  console.log("Middleware")
   if (req.session
     && req.session.expires_at
     && new Date(req.session.expires_at * 1000) > new Date()
@@ -118,10 +119,11 @@ app.get('/auth', function(req, res, next) {
     })
   })
   .then(response => {
+    console.log("Regarde ici",response)
     req.session.access_token = response.data.access_token;
     req.session.expires_at = response.data.expires_at;
     req.session.refresh_token = response.data.refresh_token;
-    console.log(req.session.access_token);
+    
     res.redirect('/');
   })
   .catch(err => {
