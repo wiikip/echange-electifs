@@ -80,7 +80,7 @@ function auth (req, res, next) {
     })))
     
     // req.session.state =
-    res.redirect(url.format({
+    return res.redirect(url.format({
       pathname: 'https://auth.viarezo.fr/oauth/authorize/',
       query: {
         'redirect_uri': redirect_uri,
@@ -149,7 +149,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/api', auth, apiRouter);
+app.use('/api',auth, apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

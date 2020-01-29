@@ -80,7 +80,7 @@ router.post('/addToListe', function(req, res, next){
 });
 router.post('/getListe', function(req, res){
   console.log('Getting List of Announces')
-  console.log(req.session)
+  console.log(req)
   var page = req.body['page']
   const client = new Client(config);
   client.connect()
@@ -92,7 +92,7 @@ router.post('/getListe', function(req, res){
   }
   // console.log(dateFormat(now, "dd/mm/yy").toString())
   client.query(querry, (err,rresultat,next) =>{
-   
+    
     if(rresultat){
       res.send(rresultat.rows);
     }
