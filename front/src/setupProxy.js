@@ -7,4 +7,11 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
+  app.use(
+    '/auth',
+    proxy({
+      target: 'http://localhost:3001',
+      changeOrigin: true,
+    })
+  );
 };
