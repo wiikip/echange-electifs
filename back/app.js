@@ -5,15 +5,16 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const url = require('url');
 var querystring = require('querystring');
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var apiRouter = require('./routes/api');
-var app = express();
 var axios = require('axios')
-
 var session = require('express-session');
-var [client_id, client_secret, username, password] = require('./secrets.js')
+
+var [client_id, client_secret, username, password, dbpassword, dbuser] = require('./secrets.js')
 const scope = "default linkcs-user:read"
+var db_port = process.env.DB_PORT || '5432'
+
+var apiRouter = require('./routes/api');
+
+var app = express();
 //Session
 app.use(session({
   name: "Auth",
@@ -23,20 +24,17 @@ app.use(session({
       connection string is built by following the syntax:
       postgres://USERNAME:PASSWORD@HOST_NAME:PORT/DB_NAME
       */
-      conString: "postgres://postgres:123456789@localhost:5432/postgres"
+      conString: "postgres://" + dbuser +":" + dbpassword + "@localhost:" + db_port + "/postgres"
     }
-
   ),
   secret: 'yourSecret',
   resave: false,
   cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }, // 30 days
   saveUninitialized: true
 }));
- //Auth middleware
-
- let redirect_uri = process.env.NODE_ENV === "development" ? 'http://localhost:3000/auth' : 'https://graphe-des-assos.cs-campus.fr/auth';
-
-
+ 
+//Auth middleware
+let redirect_uri = process.env.NODE_ENV === "development" ? 'http://localhost:3000/auth' : 'urldusite';
 function auth (req, res, next) {
   console.log("Middleware")
   if (req.session
@@ -95,7 +93,6 @@ function auth (req, res, next) {
   }
 }
 
-
 app.get('/auth', function(req, res, next) {
   console.log(2);
   console.log(req.query.code);
@@ -132,16 +129,9 @@ app.get('/auth', function(req, res, next) {
   })
 })
 
-
-
-
-
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -149,9 +139,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// Routes
 app.use('/api',auth, apiRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -173,8 +163,5 @@ app.get('/api', function(req,res,next){
 console.log("lol")
 
 
-}
-
-
-)
+})
 module.exports = app;
