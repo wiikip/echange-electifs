@@ -82,7 +82,9 @@ function Form(props){
     }
     var handleSubmit = () =>
     {
+
         console.log(wEl, rEl, seq, msg)
+        if (wEl && rEl && seq) {
         axios.post('/api/addToListe', {wantedCourse : wEl, receivedCourse : rEl.value, sequence : seq.value, message : msg}).then(function(response){
             console.log(response)
             if(response.data['success']){
@@ -100,7 +102,15 @@ function Form(props){
                 
                 }
         })
-    }
+        }
+        else{
+            alert('Il faut remplir tous les champs mec')
+
+        }
+
+
+
+}
     return (
         <div>
         
