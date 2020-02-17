@@ -6,7 +6,7 @@ import './App.css';
 import Banner from './components/Banner';
 import Main from './components/Main';
 
-const session = React.createContext
+
 
 function App() {
   return (
