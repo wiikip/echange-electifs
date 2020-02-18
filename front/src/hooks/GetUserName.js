@@ -11,10 +11,10 @@ function useGetUserName()
     }
     if(user === undefined)
     {
-        user = useGetUserName();
+        user = getUserName();
     }
 
     return user;
 }
 
-export default getUserName();
+export default useGetUserName();
