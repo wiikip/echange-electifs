@@ -5,14 +5,18 @@ import './App.css';
 
 import Banner from './components/Banner';
 import Main from './components/Main';
+import useGetUserName from './hooks/GetUserName.js';
 
 
 function App() {
+  const {user,setUser} = useGetUserName();
   return (
-    <div className="App">
+    <LoggedUserContext.Provider value = {{user,setUser}}>
+      <div className="App">
       
-      <Main />
-    </div>
+        <Main />
+      </div>
+    </LoggedUserContext.Provider>
   );
 }
 
