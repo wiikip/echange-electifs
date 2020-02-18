@@ -10,6 +10,8 @@ var [client_id, client_secret, username, password, dbpassword, dbuser] = require
 
 const config = {user : dbuser, database : 'postgres', password : dbpassword};
 const nbperpage = 10;
+
+var controller = require('../controller')
   
 
 router.use(bodyParser.json());
@@ -67,5 +69,9 @@ router.post('/getListe', function(req, res){
   client.end()
   })
 })
+
+// POST at /api/session/get_loged_user
+console.log(controller)
+router.post('/session/get_loged_user', controller.user.getUser)
 
 module.exports = router;

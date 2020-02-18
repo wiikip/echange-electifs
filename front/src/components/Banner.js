@@ -1,11 +1,17 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useContext} from 'react';
 import { withRouter, BrowserRouter as Router } from "react-router-dom";
+import session from "./Main"
 
 import { Link } from 'react-router-dom';
 
 
 
 function Banner(props) {
+
+  var userInfo = useContext(session)
+  console.log(userInfo)
+
+
   return(
     
     
@@ -28,6 +34,10 @@ function Banner(props) {
       </li>
       <li className = "nav-item">
         <Link className = "nav-link"to = '/board/add'>Ajouter une annonce</Link>
+      </li>
+      <li>
+  <p> {userInfo}</p>
+
       </li>
     </ul>
     
