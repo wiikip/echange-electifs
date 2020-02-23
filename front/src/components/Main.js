@@ -36,19 +36,19 @@ let routes = (
   </div>
 )
 function Main(props) {
-  const userInfo = useGetUserName();
-  console.log(userInfo)
-  const session = React.createContext(userInfo)
-  console.log("userinfo",userInfo)
+  // const userInfo = useGetUserName();
+  // console.log(userInfo)
+  // const session = React.createContext(userInfo)
+  // console.log("userinfo",userInfo)
   return(
-    <session.Provider>
+  //   <session.Provider>
     <Fragment>
     <Router>
       <Banner/>
       {routes}
       </Router>
     </Fragment>
-    </session.Provider>
+    // </session.Provider>
   )
 }
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
+import useGetUserName from "../hooks/GetUserName"
 const axios = require('axios');
 
 
@@ -63,7 +64,7 @@ function Form(props){
     const [wEl,setwEl] = useState(null);
     const [rEl,setRel] = useState(null);
     const [seq,setSeq] = useState({});
-    
+    const user = useGetUserName();
 
     const setInfo = {
         'msg' : setMsg,
@@ -84,28 +85,34 @@ function Form(props){
     {
 
         console.log(wEl, rEl, seq, msg)
-        if (wEl && rEl && seq) {
-        axios.post('/api/addToListe', {wantedCourse : wEl, receivedCourse : rEl.value, sequence : seq.value, message : msg}).then(function(response){
-            console.log(response)
-            if(response.data['success']){
-                alert('Annonce postée avec succès')
-                setMsg(null);
-                setwEl(null);
-                setRel(null);
-                setSeq({});
+        if (user){
+            if (wEl && rEl && seq) {
+            axios.post('/api/addToListe', {authId: user.login, fullName: user.firstName + " " + user.lastName, wantedCourse : wEl, receivedCourse : rEl.value, sequence : seq.value, message : msg}).then(function(response){
+                console.log(response)
+                if(response.data['success']){
+                    alert('Annonce postée avec succès')
+                    setMsg(null);
+                    setwEl(null);
+                    setRel(null);
+                    setSeq({});
             
+            
+                }
+
+                    else{
+                        alert('Oops! Recommence stps')
+                
+                    }
+            })
+            }
+            else{
+                alert('Il faut remplir tous les champs mec')
+        
             
             }
-
-                else{
-                    alert('Oops! Recommence stps')
-                
-                }
-        })
         }
         else{
-            alert('Il faut remplir tous les champs mec')
-
+            alert("Connecte toi d\'abord")
         }
 
 

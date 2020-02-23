@@ -1,22 +1,19 @@
 import React, {Fragment, useContext} from 'react';
 import { withRouter, BrowserRouter as Router } from "react-router-dom";
-import session from "./Main"
+import useGetUserName from '../hooks/GetUserName'
 
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 
 function Banner(props) {
-
-  var userInfo = useContext(session)
-  console.log(userInfo)
-
-
+  const user = useGetUserName()
+  
   return(
     
     
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-  <Link className="navbar-brand" to = "/">Echange Electifs</Link>
+  <NavLink className="navbar-brand" to = "/">Echange Electifs</NavLink>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
@@ -25,23 +22,25 @@ function Banner(props) {
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
     <ul className="navbar-nav mr-auto">
       <li className="nav-item">
-        <Link className="nav-link" to ="/board">Annonces<span className="sr-only">(current)</span></Link>
+        <NavLink className="nav-link" to ="/board">Annonces<span className="sr-only">(current)</span></NavLink>
       </li>
 
       
       <li className="nav-item">
-        <Link className="nav-link" to = "/about">About us</Link>
+        <NavLink className="nav-link" to = "/about">About us</NavLink>
       </li>
       <li className = "nav-item">
-        <Link className = "nav-link"to = '/board/add'>Ajouter une annonce</Link>
+        <NavLink className = "nav-link"to = '/board/add'>Ajouter une annonce</NavLink>
       </li>
-      <li>
-  <p> {userInfo}</p>
-
+      <li className = "nav-item">
+        {user && user.login ? <NavLink className = "nav-link" to = '/board/myAnnounces'>Voir mes annonces</NavLink> : <div></div>}
       </li>
+      
+  
+    
     </ul>
     
-
+    <span>{user && user.login ? <a href = '/api/logout' ><button type="button" class="btn btn-danger">Logout</button></a> : <a href = '/api/login' ><button type="button" class="btn btn-success">Login</button></a>}</span>
     
 
   </div>

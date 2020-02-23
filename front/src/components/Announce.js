@@ -13,7 +13,7 @@ function Announce(props) {
             </div>
             <div className='card-body text-left'>
                 <div className='card-text'>
-                    {props.name} offre <strong>{props.receivedCourse}</strong> et souhaite: 
+                    {props.fullName} offre <strong>{props.receivedCourse}</strong> et souhaite: 
                         <ul className = 'list-group'>{props.wantedCourse.map((course) => <li><strong>{course}</strong></li>
 
                         )}
@@ -21,7 +21,7 @@ function Announce(props) {
                        
                 </div>
                 <div className='card-text'>{props.message}</div>
-                <a href='#'>
+                <a href={'https://linkcs.fr/user/' + props.name}>
                     <button className="btn btn-primary">LinkCS</button>
                 </a>
             </div>

@@ -12,10 +12,10 @@ function Board(props){
     
     useEffect(() => {
         
-        axios.post('/api/getListe',{page : page }).then(function(response){
+        axios.post('/api/getListe',{page : page, user: props.user }).then(function(response){
 // console.log(response.data)
 // console.log(dateFormat(response.data[0]['created_at'],"dd/mm/yy"))
-console.log(response.data[0])
+console.log(response.data)
 if(liste !== response.data){
     setListe(response.data)
 }
@@ -58,7 +58,7 @@ if(liste !== response.data){
             
             
                 {liste.map((rowAnnounce)=> 
-                <Announce sequence = {rowAnnounce['sgcréneau']} postingDate = {dateFormat(rowAnnounce['created_at'], "dddd, mmmm dS")} name = {rowAnnounce['auth_id']} receivedCourse={rowAnnounce['electif_source']} wantedCourse={rowAnnounce['electif_souhaité']} message={rowAnnounce['message']} />)}
+                <Announce sequence = {rowAnnounce['sgcréneau']} postingDate = {dateFormat(rowAnnounce['created_at'], "dddd, mmmm dS")} name = {rowAnnounce['auth_id']} receivedCourse={rowAnnounce['electif_source']} wantedCourse={rowAnnounce['electif_souhaité']} message={rowAnnounce['message']} fullName = {rowAnnounce['fullname']}/>)}
             
                 </div>
              
