@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import useGetUserName from "../hooks/GetUserName"
+
+var controller = require('../controller')
 const axios = require('axios');
 
 
@@ -87,28 +89,20 @@ function Form(props){
         console.log(wEl, rEl, seq, msg)
         if (user){
             if (wEl && rEl && seq) {
-            axios.post('/api/addToListe', {authId: user.login, fullName: user.firstName + " " + user.lastName, wantedCourse : wEl, receivedCourse : rEl.value, sequence : seq.value, message : msg}).then(function(response){
-                console.log(response)
-                if(response.data['success']){
-                    alert('Annonce postée avec succès')
-                    setMsg(null);
-                    setwEl(null);
-                    setRel(null);
-                    setSeq({});
-            
-            
+            // axios.post('/api/addToListe', {authId: user.login, fullName: user.firstName + " " + user.lastName, wantedCourse : wEl, receivedCourse : rEl.value, sequence : seq.value, message : msg}).then(function(response){
+            try{
+                controller.announce.addAnnounce(user.login, user.firstName + ' ' + user.lastName, wEl, rEl.value, seq.value, msg);
+                alert('Annonce postée avec succès')
+                setMsg('');
+                setwEl(null);
+                setRel(null);
+                setSeq({});
+            }catch{
+                alert('Oops! Recommence stps')
                 }
-
-                    else{
-                        alert('Oops! Recommence stps')
-                
-                    }
-            })
             }
             else{
                 alert('Il faut remplir tous les champs mec')
-        
-            
             }
         }
         else{

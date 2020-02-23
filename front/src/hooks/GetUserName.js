@@ -4,9 +4,9 @@ import { Redirect } from 'react-router-dom';
 
 function useGetUserName(){
     const [user,setUser] = useState(undefined);
-    function getUserName(){
+    async function getUserName(){
 
-        axios.post('/api/session/get_loged_user')
+        await axios.post('/api/session/get_loged_user')
         .then(res => { setUser(res.data) })
         .catch(err => { setUser({ logged: false })});
     }

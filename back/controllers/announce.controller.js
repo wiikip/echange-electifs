@@ -34,23 +34,51 @@ function addToList(req, res, next){
   function getList(req, res){
     console.log('Getting List of Announces');
     var page = req.body['page'];
+    console.log(req.body)
     const client = new Client(config);
     client.connect()
-  
+    console.log(req.body['user'])
     // Requete récuperant les Annonces pour la page 'page'
-    const querry = {
-      text : "SELECT * FROM Annonces LIMIT $1 OFFSET $2",
-      values : [nbperpage, (page-1)*nbperpage]
+    if (req.body['user'] != undefined){
+    var querry = {
+      text : "SELECT * FROM Annonces WHERE auth_id=$3 LIMIT $1 OFFSET $2",
+      values : [nbperpage, (page-1)*nbperpage, req.body['user'].login ]
+    }}else{
+        
+        var querry = {
+            text : "SELECT * FROM Annonces  LIMIT $1 OFFSET $2",
+            values : [nbperpage, (page-1)*nbperpage]
+          }
+
+
     }
-  
+    console.log('querry', querry)
     client.query(querry, (err,rresultat,next) =>{
       
       if(rresultat){
-        console.log('lignes', rresultat)
         res.send(rresultat.rows);
       }
     client.end()
     })
   }
 
-  module.exports = {addToList, getList}
+  function deleteAnnounce(req, res){
+    console.log("id", req.body['id'])
+    const client = new Client(config);
+    var querry = {
+      text: " DELETE FROM Annonces WHERE id=$1",
+      values : [req.body['id'],]
+    }
+    client.connect();
+    client.query(querry, (err,rresultat,next) =>{
+    if(err){
+        console.log(err)
+        res.send({success: false})
+    }
+    client.end()
+    res.send({success: true})
+    }) 
+
+
+  }
+  module.exports = {addToList, getList, deleteAnnounce}

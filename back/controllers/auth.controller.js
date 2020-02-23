@@ -9,7 +9,7 @@ var [client_id, client_secret, username, password, dbpassword, dbuser] = require
 let redirect_uri = process.env.NODE_ENV === "development" ? 'http://localhost:3000/auth' : 'urldusite';
 function authMiddleware (req, res, next) {
   
-  console.log("Middleware", req.session)
+  console.log("Middleware")
   if (req.session
     && req.session.expires_at
     && new Date(req.session.expires_at * 1000) > new Date()

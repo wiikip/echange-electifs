@@ -7,12 +7,15 @@ import useGetUserName from "../hooks/GetUserName"
 import {Link ,  Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import Home from '../views/Home';
 
-
-
-
-
-let routes = (
-  <div>
+function Main(props) {
+ const user  = useGetUserName()
+  return(
+  //   <session.Provider>
+  user ?
+    <Fragment>
+    <Router>
+      <Banner/>
+      <div>
   
     <Route exact path = "/" component = {Home}>
         
@@ -28,26 +31,14 @@ let routes = (
     </Route>
     <Route exact path = "/board/add">
     <CreateAnnounce/>
-    
-
+    </Route>
+    <Route exact path = "/board/myAnnounces">
+      <Board user = {user}/>
     </Route>
   
-  
   </div>
-)
-function Main(props) {
-  // const userInfo = useGetUserName();
-  // console.log(userInfo)
-  // const session = React.createContext(userInfo)
-  // console.log("userinfo",userInfo)
-  return(
-  //   <session.Provider>
-    <Fragment>
-    <Router>
-      <Banner/>
-      {routes}
       </Router>
-    </Fragment>
+    </Fragment>: <p>Loading</p>
     // </session.Provider>
   )
 }

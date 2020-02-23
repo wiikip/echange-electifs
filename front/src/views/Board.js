@@ -1,5 +1,6 @@
 import React, { Fragment , useEffect, useState} from "react";
 import Announce from "../components/Announce"
+import useGetUserName from "../hooks/GetUserName";
 const axios = require('axios');
 const dateFormat = require('dateformat')
 const nbperpage = 10
@@ -7,7 +8,8 @@ const nbperpage = 10
 function Board(props){
     var [liste,setListe] = useState([])
     var [page,setPage] = useState(1)
-    console.log(page)
+    var user = useGetUserName()
+    console.log(user)
     
     
     useEffect(() => {
@@ -46,9 +48,11 @@ if(liste !== response.data){
 
     
     return (
+        user ?
+        user.logged === false ?
+        <p> Connecte toi d'abord :)</p> :
 
-
-        <Fragment>
+         <Fragment>
             <br/>
             <br/>
             <div>
@@ -58,7 +62,7 @@ if(liste !== response.data){
             
             
                 {liste.map((rowAnnounce)=> 
-                <Announce sequence = {rowAnnounce['sgcréneau']} postingDate = {dateFormat(rowAnnounce['created_at'], "dddd, mmmm dS")} name = {rowAnnounce['auth_id']} receivedCourse={rowAnnounce['electif_source']} wantedCourse={rowAnnounce['electif_souhaité']} message={rowAnnounce['message']} fullName = {rowAnnounce['fullname']}/>)}
+                <Announce id = {rowAnnounce['id']} sequence = {rowAnnounce['sgcréneau']} postingDate = {dateFormat(rowAnnounce['created_at'], "dddd, mmmm dS")} name = {rowAnnounce['auth_id']} receivedCourse={rowAnnounce['electif_source']} wantedCourse={rowAnnounce['electif_souhaité']} message={rowAnnounce['message']} fullName = {rowAnnounce['fullname']} canDelete = {user.login === rowAnnounce['auth_id']}/>)}
             
                 </div>
              
@@ -69,7 +73,7 @@ if(liste !== response.data){
             <button onClick = {() => setPage(page + 1)}>Page suivante</button>
         <p>Page {page}</p>
              </div>
-        </Fragment>
+        </Fragment> : <p>Loading</p>
        
     )
 }

@@ -19,8 +19,11 @@ router.post('/addToListe', controller.announce.addToList);
 router.post('/getListe', controller.announce.getList)
 
 // POST at /api/session/get_loged_user
-console.log(controller)
 router.post('/session/get_loged_user', controller.user.getUser)
+// GET at /api/logout
 router.get('/logout', controller.user.logout)
+
+//POST at /api/delete
+router.post('/delete', controller.announce.deleteAnnounce)
 
 module.exports = router;
