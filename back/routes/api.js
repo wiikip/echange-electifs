@@ -18,6 +18,8 @@ router.post('/addToListe', controller.announce.addToList);
 // POST at /api/getListe
 router.post('/getListe', controller.announce.getList)
 
+router.post('/getNumberAds', controller.announce.getNumberAds)
+
 // POST at /api/session/get_loged_user
 router.post('/session/get_loged_user', controller.user.getUser)
 // GET at /api/logout

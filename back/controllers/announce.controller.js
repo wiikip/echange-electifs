@@ -78,7 +78,22 @@ function addToList(req, res, next){
     client.end()
     res.send({success: true})
     }) 
+  }
 
+  function getNumberAds(req,res){
+    console.log("je suis la")
+    const client = new Client(config);
+    var querry = {
+      text: " SELECT COUNT(*) FROM annonces"
+    }
+    client.connect();
+    client.query(querry, ( err, result, next ) =>{
+      if(err){
+        console.log(err)
+      res.send({success: false, error: err})
+      }
+      console.log(result)
+    })
 
   }
-  module.exports = {addToList, getList, deleteAnnounce}
+  module.exports = {addToList, getList, deleteAnnounce, getNumberAds}

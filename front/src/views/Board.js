@@ -7,6 +7,7 @@ const nbperpage = 10
 
 function Board(props){
     var [liste,setListe] = useState([])
+    var [numberAds, setNumberAds] = useState(0)
     var [page,setPage] = useState(1)
     var user = useGetUserName()
     console.log(user)
@@ -21,6 +22,15 @@ console.log(response.data)
 if(liste !== response.data){
     setListe(response.data)
 }
+        axios.post('/api/getNumberAds').then(function(response){
+            console.log(response.data)
+
+        }
+        
+        
+        
+        
+        )
 
 
         }
