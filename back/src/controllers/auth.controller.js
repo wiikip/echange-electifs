@@ -2,7 +2,7 @@ const url = require('url');
 var querystring = require('querystring');
 var axios = require('axios')
 const scope = "default linkcs-user:read"
-var [client_id, client_secret, username, password, dbpassword, dbuser] = require('../secrets.js')
+var [client_id, client_secret, username, password, dbpassword, dbuser] = require('../../secrets.js')
 
 
 //Auth middleware

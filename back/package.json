@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_ENV='development' nodemon --exec babel-node ./bin/www",
-    "start": "pm2 start ./build/bin/www",
-    "build": "babel ./bin/www --out-dir build"
+    "dev": "NODE_ENV='development' nodemon --exec babel-node ./src/bin/www",
+    "start": "pm2 start ./build/src/bin/www",
+    "build": "babel ./src --out-dir build"
   },
   "dependencies": {
     "axios": "^0.19.0",

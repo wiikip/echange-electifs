@@ -8,7 +8,7 @@ var querystring = require('querystring');
 var axios = require('axios')
 var session = require('express-session');
 var controller = require('./controller')
-var [client_id, client_secret, username, password, dbpassword, dbuser] = require('./secrets.js')
+var [client_id, client_secret, username, password, dbpassword, dbuser] = require('../secrets.js')
 const scope = "default linkcs-user:read"
 var db_port = process.env.DB_PORT || '5432'
 

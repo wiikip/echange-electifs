@@ -1,6 +1,6 @@
 const {Client} = require('pg');
 
-var [client_id, client_secret, username, password, dbpassword, dbuser] = require('../secrets.js')
+var [client_id, client_secret, username, password, dbpassword, dbuser] = require('../../secrets.js')
 const config = {user : dbuser, database : 'postgres', password : dbpassword};
 const nbperpage = 10;
 
