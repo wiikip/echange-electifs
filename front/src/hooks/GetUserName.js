@@ -1,21 +1,23 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+const session = new Cookies();
 
 function useGetUserName(){
-    const [user,setUser] = useState(undefined);
-    async function getUserName(){
+    console.log(session.get('user'))
+       async function getUserName(){
 
         await axios.post('/api/session/get_loged_user')
-        .then(res => { setUser(res.data) })
-        .catch(err => { setUser({ logged: false })});
-    }
-    if(user === undefined)
-    {
-        getUserName()
+        .then(res => { session.set('user', res.data)})
 
     }
-    return user;
+    if (session.get('user') === undefined){
+        getUserName()
+    }
+    
+    return session.get('user')
+
 }
 
 export default useGetUserName;

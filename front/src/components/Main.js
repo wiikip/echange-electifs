@@ -9,8 +9,9 @@ import Home from '../views/Home';
 
 function Main(props) {
  const user  = useGetUserName()
+ console.log(user)
   return(
-  //   <session.Provider>
+
   user ?
     <Fragment>
     <Router>
@@ -39,8 +40,8 @@ function Main(props) {
   </div>
       </Router>
     </Fragment>: <p>Loading</p>
-    // </session.Provider>
+
   )
 }
-
 export default Main;
+

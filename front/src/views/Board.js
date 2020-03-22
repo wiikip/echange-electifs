@@ -21,24 +21,15 @@ function Board(props){
 console.log(response.data)
 if(liste !== response.data){
     setListe(response.data)
+    setNumberAds(liste.length)
 }
-        axios.post('/api/getNumberAds').then(function(response){
-            console.log(response.data)
 
-        }
-        
-        
-        
-        
-        )
 
 
         }
         
         
         )
-        
-            
             
 
             
@@ -81,7 +72,7 @@ if(liste !== response.data){
             
             <button onClick = {() => setPage(page - 1)}>Page précédente</button>
             <button onClick = {() => setPage(page + 1)}>Page suivante</button>
-        <p>Page {page}</p>
+        <p>Page {page} pour {numberAds} annonces</p>
              </div>
         </Fragment> : <p>Loading</p>
        

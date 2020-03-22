@@ -1,14 +1,15 @@
 import React, {Fragment, useContext} from 'react';
 import { withRouter, BrowserRouter as Router } from "react-router-dom";
 import useGetUserName from '../hooks/GetUserName'
+import { Main} from './Main'
 
 import { NavLink } from 'react-router-dom';
 
 
 
+
 function Banner(props) {
   const user = useGetUserName()
-  
   return(
     
     
