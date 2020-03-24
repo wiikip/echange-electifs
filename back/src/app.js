@@ -24,7 +24,7 @@ app.use(session({
       connection string is built by following the syntax:
       postgres://USERNAME:PASSWORD@HOST_NAME:PORT/DB_NAME
       */
-      conString: "postgres://" + dbuser +":" + dbpassword + "@localhost:" + db_port + "/postgres"
+      conString: "postgres://" + dbuser +":" + dbpassword + "@database:" + db_port + "/postgres"
     }
   ),
   secret: 'yourSecret',

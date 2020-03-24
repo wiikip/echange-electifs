@@ -1,0 +1,25 @@
+version: "2.1"
+services:
+    database:
+        image: "postgres"
+        env_file: 
+            - database.env
+        volumes:
+            - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+            - database-data:/var/lib/postgresql/data/
+        ports:
+            - 5432:5432
+    back:
+        build: ./back
+        ports:
+            - 3001:3001
+        depends_on:
+            - "database"
+    front:
+        build: ./front
+        ports:
+            - 3000:3000
+        depends_on:
+            - "back"
+volumes:
+    database-data:

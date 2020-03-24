@@ -15,9 +15,12 @@ function useGetUserName(){
     if (session.get('user') === undefined){
         getUserName()
     }
-    
-    return session.get('user')
-
+    if (session.get('user') === undefined){
+        return {logged:false}
+    }
+    else{
+        return session.get('user')
+    }
 }
 
 export default useGetUserName;

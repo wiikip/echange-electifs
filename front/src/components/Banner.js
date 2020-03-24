@@ -1,15 +1,20 @@
-import React, {Fragment, useContext} from 'react';
+import React, {Fragment, useState} from 'react';
 import { withRouter, BrowserRouter as Router } from "react-router-dom";
 import useGetUserName from '../hooks/GetUserName'
 import { Main} from './Main'
+import Cookies from 'universal-cookie';
 
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
+const session = new Cookies();
 
 
 
 function Banner(props) {
-  const user = useGetUserName()
+  var login = useGetUserName()
+
+  var [user,setUser] = useState(useGetUserName())
   return(
     
     
@@ -41,7 +46,7 @@ function Banner(props) {
     
     </ul>
     
-    <span>{user && user.login ? <a href = '/api/logout' ><button type="button" class="btn btn-danger">Logout</button></a> : <a href = '/api/login' ><button type="button" class="btn btn-success">Login</button></a>}</span>
+    <span>{login && login.login ? <button type="button" onClick={() => {session.remove('user'); setUser(undefined); axios.get('/api/logout')}} class="btn btn-danger">Logout</button> : <a href = '/api/login' ><button type="button" class="btn btn-success">Login</button></a>}</span>
     
 
   </div>
