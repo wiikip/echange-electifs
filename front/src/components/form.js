@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import useGetUserName from "../hooks/GetUserName"
-
+import Cookies from 'universal-cookie';
 var controller = require('../controller')
 const axios = require('axios');
+const session = new Cookies();
 
 
 const Sequences = 
@@ -66,7 +67,9 @@ function Form(props){
     const [wEl,setwEl] = useState(null);
     const [rEl,setRel] = useState(null);
     const [seq,setSeq] = useState({});
-    const user = useGetUserName();
+    useGetUserName();
+    const user = session.get('user')
+    const logged = session.get('logged')
 
     const setInfo = {
         'msg' : setMsg,
@@ -87,7 +90,7 @@ function Form(props){
     {
 
         console.log(wEl, rEl, seq, msg)
-        if (user){
+        if (logged === 'true'){
             if (wEl && rEl && seq) {
             // axios.post('/api/addToListe', {authId: user.login, fullName: user.firstName + " " + user.lastName, wantedCourse : wEl, receivedCourse : rEl.value, sequence : seq.value, message : msg}).then(function(response){
             try{

@@ -25,6 +25,7 @@ router.post('/session/get_loged_user', controller.user.getUser)
 // GET at /api/logout
 router.get('/logout', controller.user.logout)
 
+router.get('/login', controller.user.login)
 //POST at /api/delete
 router.post('/delete', controller.announce.deleteAnnounce)
 

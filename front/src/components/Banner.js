@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useState, useEffect} from 'react';
 import { withRouter, BrowserRouter as Router } from "react-router-dom";
 import useGetUserName from '../hooks/GetUserName'
 import { Main} from './Main'
@@ -12,9 +12,18 @@ const session = new Cookies();
 
 
 function Banner(props) {
-  var login = useGetUserName()
+  useGetUserName()
+  console.log('cookies sur Banner ', session.get('user'), session.get('logged'), typeof(session.get('logged')))
+  function handleLogout(){
+    session.remove('user')
+    axios.get('/api/logout')
+  }
+  function handleLogin(){
+    window.location.assign('/api/login')
 
-  var [user,setUser] = useState(useGetUserName())
+    
+  }
+
   return(
     
     
@@ -39,14 +48,14 @@ function Banner(props) {
         <NavLink className = "nav-link"to = '/board/add'>Ajouter une annonce</NavLink>
       </li>
       <li className = "nav-item">
-        {user && user.login ? <NavLink className = "nav-link" to = '/board/myAnnounces'>Voir mes annonces</NavLink> : <div></div>}
+        {session.get('logged') === 'true' ? <NavLink className = "nav-link" to = '/board/myAnnounces'>Voir mes annonces</NavLink> : <div></div>}
       </li>
       
   
     
     </ul>
     
-    <span>{login && login.login ? <button type="button" onClick={() => {session.remove('user'); setUser(undefined); axios.get('/api/logout')}} class="btn btn-danger">Logout</button> : <a href = '/api/login' ><button type="button" class="btn btn-success">Login</button></a>}</span>
+    <span>{session.get('logged') === 'true' ? <button type="button" onClick={handleLogout} class="btn btn-danger">{session.get('logged')}</button> : <button type="button" class="btn btn-success" onClick = {handleLogin}>{session.get('logged')}</button>}</span>
     
 
   </div>

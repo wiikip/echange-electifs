@@ -61,7 +61,7 @@ function authMiddleware (req, res, next) {
     })))
     
     // req.session.state =
-    return res.redirect(url.format({
+    return res.redirect( url.format({
       pathname: 'https://auth.viarezo.fr/oauth/authorize/',
       query: {
         'redirect_uri': redirect_uri,

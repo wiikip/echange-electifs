@@ -1,16 +1,18 @@
 import React, { Fragment , useEffect, useState} from "react";
 import Announce from "../components/Announce"
 import useGetUserName from "../hooks/GetUserName";
+import Cookies from 'universal-cookie'
 const axios = require('axios');
 const dateFormat = require('dateformat')
 const nbperpage = 10
 
+
+const session = new Cookies()
 function Board(props){
     var [liste,setListe] = useState([])
     var [numberAds, setNumberAds] = useState(0)
     var [page,setPage] = useState(1)
-    var user = useGetUserName()
-    console.log(user)
+    useGetUserName()
     
     
     useEffect(() => {
@@ -49,9 +51,9 @@ if(liste !== response.data){
 
     
     return (
-        user ?
-        user.logged === false ?
-        <p> Connecte toi d'abord :)</p> :
+        session.get('user') ?
+        session.get('logged') === 'false' ?
+        <p>Loading</p> :
 
          <Fragment>
             <br/>
@@ -63,7 +65,7 @@ if(liste !== response.data){
             
             
                 {liste.map((rowAnnounce)=> 
-                <Announce id = {rowAnnounce['id']} sequence = {rowAnnounce['sgcréneau']} postingDate = {dateFormat(rowAnnounce['created_at'], "dddd, mmmm dS")} name = {rowAnnounce['auth_id']} receivedCourse={rowAnnounce['electif_source']} wantedCourse={rowAnnounce['electif_souhaité']} message={rowAnnounce['message']} fullName = {rowAnnounce['fullname']} canDelete = {user.login === rowAnnounce['auth_id']}/>)}
+                <Announce id = {rowAnnounce['id']} sequence = {rowAnnounce['sgcréneau']} postingDate = {dateFormat(rowAnnounce['created_at'], "dddd, mmmm dS")} name = {rowAnnounce['auth_id']} receivedCourse={rowAnnounce['electif_source']} wantedCourse={rowAnnounce['electif_souhaité']} message={rowAnnounce['message']} fullName = {rowAnnounce['fullname']} canDelete = {session.get('user').login === rowAnnounce['auth_id']}/>)}
             
                 </div>
              
@@ -74,7 +76,7 @@ if(liste !== response.data){
             <button onClick = {() => setPage(page + 1)}>Page suivante</button>
         <p>Page {page} pour {numberAds} annonces</p>
              </div>
-        </Fragment> : <p>Loading</p>
+        </Fragment> : <p> Connecte toi d'abord :)</p>
        
     )
 }

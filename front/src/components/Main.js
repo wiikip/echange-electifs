@@ -9,10 +9,10 @@ import Home from '../views/Home';
 
 function Main(props) {
  const user  = useGetUserName()
- console.log(user)
+ console.log('MAIN',user)
   return(
 
-  user ?
+
     <Fragment>
     <Router>
       <Banner/>
@@ -39,7 +39,7 @@ function Main(props) {
   
   </div>
       </Router>
-    </Fragment>: <p>Loading</p>
+    </Fragment>
 
   )
 }

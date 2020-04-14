@@ -9,17 +9,19 @@ function useGetUserName(){
        async function getUserName(){
 
         await axios.post('/api/session/get_loged_user')
-        .then(res => { session.set('user', res.data)})
+        .then(res => { session.set('user', res.data, '/')})
 
     }
+    
     if (session.get('user') === undefined){
         getUserName()
     }
+    console.log("après appel de getUser", session.get('user'))
     if (session.get('user') === undefined){
-        return {logged:false}
+        session.set('logged', false, '/')
     }
     else{
-        return session.get('user')
+        session.set('logged', true,'/')
     }
 }
 
