@@ -6,7 +6,7 @@ var [client_id, client_secret, username, password, dbpassword, dbuser] = require
 
 
 //Auth middleware
-let redirect_uri = process.env.NODE_ENV === "development" ? 'http://localhost:3000/auth' : 'urldusite';
+let redirect_uri = process.env.NODE_ENV === "development" ? 'http://localhost:3000/auth' : 'https://swap.viarezo.fr/auth';
 function authMiddleware (req, res, next) {
   
   console.log("Middleware")

@@ -11,7 +11,8 @@ var controller = require('./controller')
 var [client_id, client_secret, username, password, dbpassword, dbuser] = require('../secrets.js')
 const scope = "default linkcs-user:read"
 var db_port = process.env.DB_PORT || '5432'
-
+var db_host = process.env.DB_HOST || 'localhost'
+var db_name = process.env.DB_NAME || 'postgres'
 var apiRouter = require('./routes/api');
 
 var app = express();
@@ -24,7 +25,7 @@ app.use(session({
       connection string is built by following the syntax:
       postgres://USERNAME:PASSWORD@HOST_NAME:PORT/DB_NAME
       */
-      conString: "postgres://" + dbuser +":" + dbpassword + "@database:" + db_port + "/postgres"
+      conString: "postgres://" + dbuser +":" + dbpassword + "@" + db_host + ":"  + db_port + "/" + db_name
     }
   ),
   secret: 'yourSecret',

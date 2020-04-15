@@ -1,10 +1,12 @@
+
 {
   "name": "back",
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "prod": "DB_NAME=swap PORT=8080 nodemon --exec babel-node ./build/bin/www",
     "dev": "NODE_ENV='development' nodemon --exec babel-node ./src/bin/www",
-    "start": "pm2 start ./build/src/bin/www",
+    "start": "DB_NAME=swap PORT=8080 pm2 start ./build/bin/www",
     "build": "babel ./src --out-dir build"
   },
   "dependencies": {

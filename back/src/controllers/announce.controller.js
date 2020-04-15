@@ -1,7 +1,8 @@
 const {Client} = require('pg');
-
+var db_name = process.env.DB_NAME || 'postgres'
+var db_host = process.env.DB_HOST || 'localhost'
 var [client_id, client_secret, username, password, dbpassword, dbuser] = require('../../secrets.js')
-const config = {user : dbuser, database : 'postgres', password : dbpassword, host: 'database'};
+const config = {user : dbuser, database : db_name, password : dbpassword, host: db_host};
 const nbperpage = 10;
 
 function addToList(req, res, next){
