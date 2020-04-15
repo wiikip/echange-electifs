@@ -122,7 +122,7 @@ function Form(props){
         <ReceivedElectif updateParent = {updateParent} rEl = {rEl} cours = {cours[seq.value]}/>
         <WantedElectif updateParent = {updateParent} wEl = {wEl} cours = {cours[seq.value]}/>
         <Message updateParent = {updateParent} msg = {msg}/>
-        <button onClick = {handleSubmit}> TEST </button>
+        <button onClick = {handleSubmit}> Ajouter l'annonce </button>
 
         </div>
 

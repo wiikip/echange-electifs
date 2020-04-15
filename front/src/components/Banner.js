@@ -17,9 +17,11 @@ function Banner(props) {
   function handleLogout(){
     session.remove('user')
     axios.get('/api/logout')
+    window.location.reload(false)
   }
   function handleLogin(){
     window.location.assign('/api/login')
+    window.location.reload(false)
 
     
   }

@@ -8,7 +8,7 @@ function CreateAnnounce(props){
     return ( 
 
         <div>
-            <p>YO</p>
+            <p>Remplis ce formulaire pour ajouter une demande d'échange d'éléctif</p>
             <Form/>
             
 
